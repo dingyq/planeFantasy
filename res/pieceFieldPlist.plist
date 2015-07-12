@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>piece_body_hit.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+			<key>piece_default.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,56},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+			<key>piece_fail.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,110},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+			<key>piece_head_hit.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,164},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+			<key>piece_illegal.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,218},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+			<key>piece_legal.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,272},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+			<key>piece_mark.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,326},{50,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{50,50}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>pieceFieldPlist.png</string>
+			<key>realTextureFileName</key>
+			<string>pieceFieldPlist.png</string>
+			<key>size</key>
+			<string>{54,378}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>54</integer>
+			<key>height</key>
+			<integer>378</integer>
+		</dict>
+	</dict>
+</plist>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/cocos/platform/android/ControllerManualAdapter/libs/com.bda.controller.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/cocos/platform/android/ControllerManualAdapter/libs/ouya-sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/cocos/platform/android/ControllerManualAdapter/libs/nibiru_lib_2_1_8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

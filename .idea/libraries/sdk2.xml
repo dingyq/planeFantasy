@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="sdk2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/plugin/plugins/qh360/proj.android/sdk/upomp_bypay_lib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/plugin/plugins/qh360/proj.android/sdk/360SDK.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/plugin/plugins/qh360/proj.android/sdk/zsht_app_360game.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Texaspoker-js/frameworks/js-bindings/cocos2d-x/plugin/plugins/qh360/proj.android/sdk/annotations.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

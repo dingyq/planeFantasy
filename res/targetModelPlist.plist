@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>cannon_model.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,154},{103,140}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{103,140}</string>
+			</dict>
+			<key>plane_model.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,298},{103,140}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{103,140}</string>
+			</dict>
+			<key>tank_model.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,442},{103,140}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{103,140}</string>
+			</dict>
+			<key>target_select_edge.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{112,148}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{112,148}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>targetModelPlist.png</string>
+			<key>realTextureFileName</key>
+			<string>targetModelPlist.png</string>
+			<key>size</key>
+			<string>{116,584}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>116</integer>
+			<key>height</key>
+			<integer>584</integer>
+		</dict>
+	</dict>
+</plist>
