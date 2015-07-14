@@ -14,23 +14,23 @@ var TargetSelectCell = cc.TableViewCell.extend({
 
     initWithData:function(config){
         this.sprite = new TargetSprite("#"+config.sprName);
+        //this.sprite = new cc.Sprite("#"+config.sprName);
         this.sprite.setSpriteProperty(config.targetType, config.direction, config.rotation, "#"+config.sprName);
         this.sprite.setScale(0.6);
         this.sprite.setRotation(config.rotation);
-        var cellSize = this.getContentSize();
         //this.sprite.setAnchorPoint(0, 0);
         this.sprite.x = this.cellSize.width/2;
         this.sprite.y = this.cellSize.height/2;
         this.sprite.setTag(122);
         this.addChild(this.sprite);
 
-        this.edgeSpr = new cc.Sprite(res.targetSelect_png);
-        this.edgeSpr.setScale(0.6);
-        this.edgeSpr.setRotation(config.rotation);
-        this.edgeSpr.x = this.cellSize.width/2;
-        this.edgeSpr.y = this.cellSize.height/2;
-        this.edgeSpr.setVisible(false);
-        this.addChild(this.edgeSpr);
+        //this.edgeSpr = new cc.Sprite(res.targetSelect_png);
+        //this.edgeSpr.setScale(0.6);
+        //this.edgeSpr.setRotation(config.rotation);
+        //this.edgeSpr.x = this.cellSize.width/2;
+        //this.edgeSpr.y = this.cellSize.height/2;
+        //this.edgeSpr.setVisible(false);
+        //this.addChild(this.edgeSpr);
 
         this.label = new cc.LabelTTF(config.name, "Helvetica", 20.0);
         this.label.x = 0;
@@ -43,17 +43,18 @@ var TargetSelectCell = cc.TableViewCell.extend({
 
     updateWithData:function(config){
         this.sprite.setSpriteProperty(config.targetType, config.direction, config.rotation, "#"+config.sprName);
-        this.sprite.setSpriteName(config.sprName);
+        cc.log("tst "+config.sprName);
+
         this.sprite.setRotation(config.rotation);
 
 
-        this.edgeSpr.setRotation(config.rotation);
+        //this.edgeSpr.setRotation(config.rotation);
         this.label.setString(config.name);
     },
 
     displaySelectTip:function(isShow){
-        this.edgeSpr.setVisible(isShow);
-    },
+        //this.edgeSpr.setVisible(isShow);
+    }
 });
 
 var targetSelectConfig = [
@@ -68,7 +69,7 @@ var targetSelectConfig = [
     {name:"cannonLeft", direction:DIRECTION.UP, sprName:targetModelRes.cannon, rotation:0, targetType:TARGET_TYPE.CANNON},
     {name:"cannonDown", direction:DIRECTION.DOWN, sprName:targetModelRes.cannon, rotation:180, targetType:TARGET_TYPE.CANNON},
     {name:"cannonLeft", direction:DIRECTION.LEFT, sprName:targetModelRes.cannon, rotation:270, targetType:TARGET_TYPE.CANNON},
-    {name:"cannonRight", direction:DIRECTION.RIGHT, sprName:targetModelRes.cannon, rotation:90, targetType:TARGET_TYPE.CANNON},
+    {name:"cannonRight", direction:DIRECTION.RIGHT, sprName:targetModelRes.cannon, rotation:90, targetType:TARGET_TYPE.CANNON}
 ];
 
 var TargetSelectPanel = BaseLayer.extend({
@@ -88,7 +89,7 @@ var TargetSelectPanel = BaseLayer.extend({
 
     onEnter:function(){
         this._super();
-        this.createSelectPanel();
+        //this.createSelectPanel();
         this.createSelectPanel1();
     },
 
@@ -166,5 +167,5 @@ var TargetSelectPanel = BaseLayer.extend({
 
     numberOfCellsInTableView:function(table){
         return targetSelectConfig.length;
-    },
-})
+    }
+});
