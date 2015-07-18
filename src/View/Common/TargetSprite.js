@@ -81,7 +81,7 @@ var TargetSprite = cc.Sprite.extend({
             scaleFactor:1,
 
             onTouchBegan:function(touch, event){
-                cc.log("target sprite onTouchBegan");
+                //cc.log("target sprite onTouchBegan");
                 var target = event.getCurrentTarget();
                 var locationInNode = target.convertToNodeSpace(touch.getLocation());
                 this.beginPosi = locationInNode;

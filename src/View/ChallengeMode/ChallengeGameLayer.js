@@ -4,26 +4,29 @@
 var ChallengeGameLayer = BaseLayer.extend({
     _zoomOutScale:1,
     _selectedTargetModel:null,
-    canvasMatrixM:null,
+    _canvasMatrixM:null,
     _gap:2,
     _sprWidth:52,
     _sprHeight:52,
     _xUnits:0,
     _yUnits:0,
+    _targetCount:2,
 
     ctor:function(xUnit, yUnit){
         this._super();
+
+        this._targetCount = 2;
         this.setXUnitsNum(xUnit);
         this.setYUnitsNum(yUnit);
-        this.generateCanvasMatrixModel();
-        this.createGameContentLayer();
-        this.createTouchLayer();
+
     },
 
     onEnter:function(){
         this._super();
 
-
+        this.generateCanvasMatrixModel();
+        this.createGameContentLayer();
+        this.createTouchLayer();
     },
 
     onExit:function(){
@@ -66,14 +69,27 @@ var ChallengeGameLayer = BaseLayer.extend({
     },
 
     selectedModelPlaced:function(model){
-        var isLegal = this.canvasMatrixM.checkTargetModelIsLegal(model);
+        if(this._targetCount <= 0){
+            var pointList = model.getAbsolutePartsSet();
+            for(var i = 0; i < pointList.length; i ++){
+                var sprTag = pointList[i].x*100+pointList[i].y+1;
+                var tmpSpr = this.gameContentLayer.getChildByTag(sprTag);
+                if (null != tmpSpr){
+                    tmpSpr.showLayoutTip(false);
+                }
+            }
+            return
+        };
+
+        var isLegal = this._canvasMatrixM.checkTargetModelIsLegal(model);
         if (isLegal) {
-            this.canvasMatrixM.addTargetToListByModel(model);
+            this._canvasMatrixM.addTargetToListByModel(model);
+            this._targetCount --;
         } else {
 
         }
 
-        var modelList = this.canvasMatrixM.getTargetsList();
+        var modelList = this._canvasMatrixM.getTargetsList();
         for(var i = 0; i < modelList.length; i ++){
             var pointList = modelList[i].getAbsolutePartsSet();
             for (var j = 0; j < pointList.length; j++){
@@ -85,19 +101,19 @@ var ChallengeGameLayer = BaseLayer.extend({
                     tmpSpr.setIsPart(true);
                     tmpSpr.setIsPlaced(true);
                     tmpSpr.showStatus();
-                    //this.canvasMatrixM.isPartPoint(new Point(i, j)), this.canvasMatrixM.isHeadPoint(new Point(i,j))
+                    //this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i,j))
                 }
             }
         }
     },
 
     checkTargetModelPlacingLegality:function(model){
-        return this.canvasMatrixM.checkTargetModelIsLegal(model);
+        return this._canvasMatrixM.checkTargetModelIsLegal(model);
     },
 
     generateCanvasMatrixModel:function(){
-        this.canvasMatrixM = new CanvasMatrixModel(this.getXUnitsNum(), this.getYUnitsNum());// the canvas data model
-        //this.canvasMatrixM.randomTargets();
+        this._canvasMatrixM = new CanvasMatrixModel(this.getXUnitsNum(), this.getYUnitsNum());// the canvas data model
+        //this._canvasMatrixM.randomTargets();
     },
 
     createGameContentLayer:function(){
@@ -121,14 +137,14 @@ var ChallengeGameLayer = BaseLayer.extend({
                 if (null == tmpSpr){
                     tmpSpr = PieceField.factoryCreate();
                     tmpSpr.setCanTouched(false);
-                    //this.canvasMatrixM.isPartPoint(new Point(i, j)), this.canvasMatrixM.isHeadPoint(new Point(i,j))
+                    //this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i,j))
                     tmpSpr.setTag(sprTag);
                     var posi = cc.p(i*(this._sprWidth+this._gap)+this._sprWidth/2, j*(this._sprHeight+this._gap)+this._sprHeight/2);
                     tmpSpr.setPosition(posi);
                     this.gameContentLayer.addChild(tmpSpr);
                 } else {
                     tmpSpr.resetState();
-                    //this.canvasMatrixM.isPartPoint(new Point(i, j)), this.canvasMatrixM.isHeadPoint(new Point(i,j))
+                    //this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i,j))
                 }
             }
         }

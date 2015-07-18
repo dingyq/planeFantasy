@@ -2,7 +2,7 @@
 "project_type": "javascript",
 
 "debugMode" : 1,
-"showFPS" : false,
+"showFPS" : true,
 "frameRate" : 60,
 "id" : "gameCanvas",
 "renderMode" : 0,
@@ -17,6 +17,7 @@
   "src/Utilities/js-signals.js",
   "src/Utilities/Helper.js",
   "src/Utilities/UpdateUIManager.js",
+  "src/Utilities/LoadingScene.js",
 
   "src/Model/CanvasMatrixModel.js",
   "src/Model/TargetModel.js",

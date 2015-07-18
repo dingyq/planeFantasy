@@ -60,7 +60,8 @@ cc.game.onStart = function(){
     // The game will be resized when browser size change
     cc.view.resizeWithBrowserSize(true);
     //load resources
-    cc.LoaderScene.preload(g_resources, function () {
+    //cc.LoaderScene.preload(g_resources, function () {
+    LoadingScene.preload(g_resources, function () {
         //cc.director.runScene(new GameEntryController());
         //cc.director.runScene(new AircraftBeatController());
         cc.director.runScene(new ChallengePlayerController());

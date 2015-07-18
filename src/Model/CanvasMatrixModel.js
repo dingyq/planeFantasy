@@ -139,7 +139,7 @@ var CanvasMatrixModel = cc.Class.extend({
         for(var i = 0; i < this.getTargetsList().length; i++) {
             var tmpTarget = this.getTargetsList()[i];
             // undo --
-            cc.log("tmpTarget's headPoint is "+tmpTarget.getAbsoluteHeadPoint().formatToString());
+            //cc.log("tmpTarget's headPoint is "+tmpTarget.getAbsoluteHeadPoint().formatToString());
             var existTargetAbPartsSet = tmpTarget.getAbsolutePartsSet();
 
 

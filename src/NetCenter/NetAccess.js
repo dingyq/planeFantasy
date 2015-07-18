@@ -1,16 +1,20 @@
+/**
+ * Created by bigqiang on 15/7/1.
+ */
 
 var NetAccess = cc.Class.extend({
+	_className:"NetAccess",
 	_sharedXhr:null,
-	
+
 	ctor:function(){
 		this.init()
 	},
-	
+
 	init:function(){
 		return true;
 	},
-	
-	_getSign:function(reqPkg){
+
+	getSign:function(reqPkg){
 		var url = "";
 		var signStr = "";
 		var keyList = [];
@@ -19,8 +23,8 @@ var NetAccess = cc.Class.extend({
 			keyList[i] = key;
 			i = i + 1;
 		}
-		Array.sort(keyList);
-		
+		keyList.sort();
+
 		for (var index in keyList){
 			var key = keyList[index];
 			url = url+key+"="+encodeURIComponent(reqPkg[key])+"&";
@@ -28,95 +32,60 @@ var NetAccess = cc.Class.extend({
 //			cc.log(encodeURI(reqPkg[key]))
 			signStr = signStr+key+reqPkg[key];
 		}
-		
-		signStr = signStr+Landlords.getInstance().getUrlKey();
+
+		signStr = signStr+TexasPokerUser.getInstance().getUrlKey();
 		var urlsign = hex_md5(signStr);
 		url = url+"urlsign="+urlsign;
 		var result = {
 			urlRlt:url,
-			urlsignRlt:urlsign
+			urlSignRlt:urlsign
 		};
-		
-		cc.log("url is "+JSON.stringify(JSON.stringify(reqPkg)));
-//		cc.log("url is "+JSON.stringify(reqPkg));
+		//cc.log("url is "+JSON.stringify(JSON.stringify(keyList)));
 		return result
 	},
-	
+
 	urlFormat:function(reqPkg){
 		//参数补齐
-		if (reqPkg["from_where"] == null && Helper.getChannel()!= null) {
-			reqPkg["from_where"] = Helper.getChannel();
-		}
-		if (reqPkg["uid"] == null && Landlords.getInstance().getUsrId() != null) {
-			reqPkg["uid"] = Landlords.getInstance().getUsrId();
-		}
-		if (reqPkg["session_id"] == null && Landlords.getInstance().getSessionId() != null) {
-			reqPkg["session_id"] = Landlords.getInstance().getSessionId();
-		}
-		if (reqPkg["version"] == null) {
-			reqPkg["version"] = Helper.getAppVersion();
-		}
-		if (reqPkg["script_version"] == null) {
-			reqPkg["script_version"] = cc.sys.localStorage.getItem(LD.CURRENT_LUA_VERSION_CODE); 
-		}
-		
-		if (reqPkg['game'] == null) {
-			reqPkg['game'] = LD.GAME_NAME;
-		}
-		
-		var requestRlt = this._getSign(reqPkg);
+		//if (reqPkg["from_where"] == null && Helper.getChannel()!= null) {
+		//	reqPkg["from_where"] = Helper.getChannel();
+		//}
+		//if (reqPkg["uid"] == null && TexasPokerUser.getInstance().getUserId() != null) {
+		//	reqPkg["uid"] = TexasPokerUser.getInstance().getUserId();
+		//}
+		//if (reqPkg["session_id"] == null && TexasPokerUser.getInstance().getSessionId() != null) {
+		//	reqPkg["session_id"] = TexasPokerUser.getInstance().getSessionId();
+		//}
+		//if (reqPkg["version"] == null) {
+		//	reqPkg["version"] = Helper.getAppVersion();
+		//}
+		//if (reqPkg["script_version"] == null) {
+		//	reqPkg["script_version"] = LocalStorage.getInstance().getScriptVersion();
+		//}
+
+		var requestRlt = this.getSign(reqPkg);
 		return requestRlt;
 	},
-	
-	loadImage:function(imagePath, funcCallBack){
-		imagePath = "http://www.999com.com/index.php?r=user/getvercode&loginname=18682328421";
-		if (imagePath==null || imagePath=="") {
-			return
+
+	downloadImage:function(imageUrl, funcCallBack){
+		cc.log("imageUrl "+imageUrl);
+		if(null == imageUrl || "" == imageUrl) {
+			funcCallBack(false);
+			return;
 		}
-		var xhr = cc.loader.getXMLHttpRequest();
-		xhr.responseType = "arraybuffer";
-		xhr.open("GET", imagePath);
-		xhr.onreadystatechange = function (){
-			if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
-//				var responseObj = JSON.parse(xhr.responseText);
-				var responseObj = xhr.response;
-				if (responseObj["retcode"] == LMRC_RET_CODE.SESSION_KEY_OUTTIME) {
-
-				}else if(responseObj["retcode"] == LMRC_RET_CODE.LOGIN_REPEAT_ONLINE_ERROR){
-
-				}else {	
-					funcCallBack(true, responseObj);
-				}
-			}else if(xhr.status == -1){
-				cc.log("http链接超时");
-			}
-		};
-
-		xhr.send()
-	},
-	
-	loadImgFromUrl: function (target, imgUrl, p, tag) {
-//		NetAccess.getInstance().loadImgFromUrl(this.tmpLayer, imagePath, cc.p(0,0),10);
-		if(!imgUrl)return;
-		var self = target;
 		var loadCb = function(err, img){
 			if (err != null) {
 				cc.log(err)
 				return
 			}
-			var logo  = new cc.Sprite(img); 
-			logo.x = p.x;
-			logo.y = p.y;
-			logo.tag = tag;
-			self.addChild(logo);
+			funcCallBack(true, img);
 		}
-		cc.loader.loadImg(imgUrl, null, loadCb);
+		cc.loader.loadImg(imageUrl, {isCrossOrigin:true}, loadCb);
 	},
-	
+
 	getRequest:function(reqPkg, funcCallBack){
 		var result = this.urlFormat(reqPkg);
 		var reqUrl = result["urlRlt"];
-		var urlString = Helper.hostName()+"/index.php?"+reqUrl;
+		var urlString = serverAddr+reqUrl;
 		var xhr = cc.loader.getXMLHttpRequest();
 		xhr.open("GET", urlString);
 		xhr.onreadystatechange = function (){
@@ -124,53 +93,53 @@ var NetAccess = cc.Class.extend({
 			cc.log(xhr.responseText);
 			if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
 				var responseObj = JSON.parse(xhr.responseText);
-				if (responseObj["retcode"] == LMRC_RET_CODE.SESSION_KEY_OUTTIME) {
+				if (responseObj["retcode"] == RET_CODE.SESSION_KEY_OUTTIME) {
 
-				}else if(responseObj["retcode"] == LMRC_RET_CODE.LOGIN_REPEAT_ONLINE_ERROR){
-
-				}else {	
+				}else {
 					funcCallBack(true, responseObj);
 				}
 			}else if(xhr.status == -1){
 				cc.log("http链接超时");
 			}
 		};
-		
 		xhr.send();
-		
 	},
-	
-	postRequest:function(route, reqPkg, funcCallBack){
+
+	postRequest:function(reqPkg, funcCallBack){
 		var result = this.urlFormat(reqPkg);
 		var reqUrl = result["urlRlt"];
-		var urlString = LD.URL_HEADER + route;
-		
-//		var urlString = "http://"+Helper.hostName()+"/index.php/user/register";
-		
-//		var urlString = "http://google.com.hk";
+		var urlString = serverAddr;
 		var xhr = cc.loader.getXMLHttpRequest();
-		xhr.timeout= 10;
-		xhr.open("POST", urlString);
-		cc.log(urlString + "?" + reqUrl);
-//		cc.log(reqUrl);
+		//xhr.timeout= 10;
+		xhr.open("POST", urlString+reqUrl);
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		//xhr.setRequestHeader("Content-Type","text/plain;charset=UTF-8");
+		cc.log(urlString + reqUrl);
 		xhr.onreadystatechange = function (){
-			cc.log("xhr.readyState "+xhr.readyState);
-			cc.log(xhr.responseText);
 			if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
+				cc.log("done "+xhr.responseText);
 				var responseObj = JSON.parse(xhr.responseText);
-				if (responseObj["retcode"] == LMRC_RET_CODE.SESSION_KEY_OUTTIME) {
-					
-				}else if(responseObj["retcode"] == LMRC_RET_CODE.LOGIN_REPEAT_ONLINE_ERROR){
-					
-				}else {	
+				if (responseObj["retcode"] == RET_CODE.SESSION_KEY_OUTTIME) {
+
+				}else if(responseObj["retcode"] == RET_CODE.LOGIN_REPEAT_ONLINE_ERROR){
+
+				}else {
 					funcCallBack(true, responseObj);
 				}
 			}else if(xhr.status == -1){
 				funcCallBack(false);
 				cc.log("http time out js");
 			}else{
-				funcCallBack(false);
-				cc.log("http link wrong");
+				if(xhr.readyState == 1){
+					cc.log("opened");
+				}else if(xhr.readyState == 2){
+					cc.log("receiving");
+				}else if(xhr.readyState == 3){
+					cc.log("loading");
+				} else {
+					funcCallBack(false);
+					cc.log("http link wrong");
+				}
 			}
 		};
 		xhr.send(reqUrl);
@@ -181,7 +150,7 @@ var NetAccess = cc.Class.extend({
 NetAccess._sharedXhr = null
 
 NetAccess.getInstance = function(){
-	cc.assert(NetAccess._sharedXhr, "Havn't call setSharedXhr");
+	//cc.assert(NetAccess._sharedXhr, "Havn't call setSharedXhr");
 	if (!NetAccess._sharedXhr) {
 		NetAccess._sharedXhr = new NetAccess();
 	}

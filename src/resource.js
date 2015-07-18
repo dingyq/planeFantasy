@@ -17,6 +17,7 @@ for (var i in res) {
 }
 
 var btnItemRes = {
+    baseBtn:"basic_button_normal.png",
     aboutGame:"about_game.png",
     gameOption:"game_option.png",
     machineMode:"machine_mode.png",

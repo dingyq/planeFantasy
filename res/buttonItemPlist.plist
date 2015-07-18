@@ -1,93 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>frames</key>
 	<dict>
-		<key>about_game.png</key>
+		<key>frames</key>
 		<dict>
-			<key>frame</key>
-			<string>{{2,2},{123,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{123,36}</string>
+			<key>about_game.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
+			<key>back_hall.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{123,0},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
+			<key>challenge_mode.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{246,0},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
+			<key>game_option.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{369,0},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
+			<key>machine_mode.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,36},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
+			<key>restart_game.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{123,36},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
+			<key>basic_button_normal.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{246,36},{123,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{123,36}</string>
+			</dict>
 		</dict>
-		<key>back_hall.png</key>
+		<key>metadata</key>
 		<dict>
-			<key>frame</key>
-			<string>{{129,2},{123,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{123,36}</string>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>buttonItemPlist.png</string>
+			<key>realTextureFileName</key>
+			<string>buttonItemPlist.png</string>
+			<key>size</key>
+			<string>{492,72}</string>
 		</dict>
-		<key>challenge_mode.png</key>
+		<key>texture</key>
 		<dict>
-			<key>frame</key>
-			<string>{{256,2},{123,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{123,36}</string>
-		</dict>
-		<key>game_option.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{383,2},{123,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{123,36}</string>
-		</dict>
-		<key>machine_mode.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{510,2},{123,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{123,36}</string>
-		</dict>
-		<key>restart_game.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{637,2},{123,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceSize</key>
-			<string>{123,36}</string>
+			<key>width</key>
+			<integer>492</integer>
+			<key>height</key>
+			<integer>72</integer>
 		</dict>
 	</dict>
-	<key>metadata</key>
-	<dict>
-		<key>format</key>
-		<integer>2</integer>
-		<key>textureFileName</key>
-		<string>buttonItemPlist.png</string>
-		<key>realTextureFileName</key>
-		<string>buttonItemPlist.png</string>
-		<key>size</key>
-		<string>{762,40}</string>
-	</dict>
-	<key>texture</key>
-	<dict>
-		<key>width</key>
-		<integer>762</integer>
-		<key>height</key>
-		<integer>40</integer>
-	</dict>
-</dict>
 </plist>

@@ -68,5 +68,8 @@ var ChallengePlayerController = cc.Scene.extend({
         this.addChild(this.targetSelectPanel);
     },
 
+    createAssistantMenu:function(){
+        
+    }
 
 })
