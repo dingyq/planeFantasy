@@ -11,11 +11,13 @@ var ChallengeGameLayer = BaseLayer.extend({
     _xUnits:0,
     _yUnits:0,
     _targetCount:2,
+    _gameContentLayer:null,
+    _touchLayer:null,
 
     ctor:function(xUnit, yUnit){
         this._super();
-
         this._targetCount = 2;
+        this.setOpacity(0);
         this.setXUnitsNum(xUnit);
         this.setYUnitsNum(yUnit);
 
@@ -33,6 +35,10 @@ var ChallengeGameLayer = BaseLayer.extend({
 
 
         this._super();
+    },
+
+    resetTargetCount:function(){
+        this._targetCount = 2;
     },
 
     getXUnitsNum:function(){
@@ -63,9 +69,51 @@ var ChallengeGameLayer = BaseLayer.extend({
         return this._selectedTargetModel;
     },
 
+    getLayoutTargetsPointsList:function(){
+        var bodyPointsList = new Array();
+        var headPointsList = new Array();
+        var modelList = this._canvasMatrixM.getTargetsList();
+        for(var i = 0; i < modelList.length; i ++) {
+            var pointList = modelList[i].getAbsolutePartsSet();
+            pointList.forEach(function(value){
+                bodyPointsList.push(value);
+            });
+            var head = modelList[i].getAbsoluteHeadPoint();
+            headPointsList.push(head);
+        }
+
+        return {
+            bodyList:bodyPointsList,
+            headList:headPointsList,
+        };
+    },
+
     updateSelectedTargetModel:function(model){
         this.setSelectedTargetModel(model);
-        this.touchLayer.updateSelectedModel(model);
+        this._touchLayer.updateSelectedModel(model);
+    },
+
+    layoutTargetsDone:function(){
+        var result = this.getLayoutTargetsPointsList();
+        cc.log("layoutTargetDone " + JSON.stringify(result));
+
+        for(var i = 0; i < this.getXUnitsNum(); i++){
+            for(var j = 0; j < this.getYUnitsNum(); j++){
+                var sprTag = i*100+j+1;
+                var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
+                if (null != tmpSpr){
+                    var jump = cc.rotateBy(0.3, 0, -90);
+                    var jump1 = cc.rotateBy(0.3, 0, -90);
+                    var isPart = this._canvasMatrixM.isPartPoint(new Point(i, j));
+                    var isHead = this._canvasMatrixM.isHeadPoint(new Point(i, j));
+                    tmpSpr.runAction(cc.sequence(jump, cc.callFunc(function(){
+                        this.setCanTouched(true);
+                        //this._tmpSpr.resetState(this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i, j)));
+                    }, tmpSpr), jump1));
+                    tmpSpr.resetState(isPart, isHead);
+                }
+            }
+        }
     },
 
     selectedModelPlaced:function(model){
@@ -73,7 +121,7 @@ var ChallengeGameLayer = BaseLayer.extend({
             var pointList = model.getAbsolutePartsSet();
             for(var i = 0; i < pointList.length; i ++){
                 var sprTag = pointList[i].x*100+pointList[i].y+1;
-                var tmpSpr = this.gameContentLayer.getChildByTag(sprTag);
+                var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
                 if (null != tmpSpr){
                     tmpSpr.showLayoutTip(false);
                 }
@@ -92,13 +140,17 @@ var ChallengeGameLayer = BaseLayer.extend({
         var modelList = this._canvasMatrixM.getTargetsList();
         for(var i = 0; i < modelList.length; i ++){
             var pointList = modelList[i].getAbsolutePartsSet();
+            var head = modelList[i].getAbsoluteHeadPoint();
             for (var j = 0; j < pointList.length; j++){
                 cc.log("model idx"+i+"  point x,y is "+pointList[j].x+"  "+pointList[j].y);
                 var sprTag = pointList[j].x*100+pointList[j].y+1;
-                var tmpSpr = this.gameContentLayer.getChildByTag(sprTag);
+                var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
                 if (null != tmpSpr){
                     tmpSpr.setCanTouched(true);
                     tmpSpr.setIsPart(true);
+                    if(pointList[j].isEqualToPoint(head)) {
+                        tmpSpr.setIsHead(true);
+                    }
                     tmpSpr.setIsPlaced(true);
                     tmpSpr.showStatus();
                     //this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i,j))
@@ -116,15 +168,43 @@ var ChallengeGameLayer = BaseLayer.extend({
         //this._canvasMatrixM.randomTargets();
     },
 
+    resetGameLayer:function(){
+        // reset interface
+        this.resetGameLayerByModelList(this._canvasMatrixM.getTargetsList());
+        this.resetTargetCount();
+        // reset model
+        this._canvasMatrixM.clearTargetsList();
+    },
+
+    resetGameLayerByModelList:function(modelList){
+        for(var i = 0; i < modelList.length; i ++){
+            var pointList = modelList[i].getAbsolutePartsSet();
+            for (var j = 0; j < pointList.length; j++){
+                cc.log("model idx"+i+"  point x,y is "+pointList[j].x+"  "+pointList[j].y);
+                var sprTag = pointList[j].x*100+pointList[j].y+1;
+                var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
+                if (null != tmpSpr){
+                    //var jump = cc.jumpBy(0.3, cc.p(0,10));
+                    var jump = cc.rotateBy(0.3, 0, -90);
+                    var jump1 = cc.rotateBy(0.3, 0, -90);
+                    tmpSpr.runAction(cc.sequence(jump, cc.callFunc(function(){
+                        this.setCanTouched(false);
+                        this.resetState();
+                    }, tmpSpr), jump1));
+                }
+            }
+        }
+    },
+
     createGameContentLayer:function(){
         var size = cc.winSize;
-        // the gameContentLayer, use to add to scrollView in future.
-        this.gameContentLayer= new cc.Layer();
+        // the _gameContentLayer, use to add to scrollView in future.
+        this._gameContentLayer= new cc.Layer();
         var blContentSize = cc.size(this.getXUnitsNum()*this._sprWidth+(this.getXUnitsNum()-1)*this._gap, this.getYUnitsNum()*this._sprHeight+(this.getYUnitsNum()-1)*this._gap);
-        this.gameContentLayer.setContentSize(blContentSize);
-        this.gameContentLayer.setScale(this.getZoomOutScale());
-        this.gameContentLayer.setPosition(size.width/2 - blContentSize.width/2,size.height/2 - blContentSize.height/2);
-        this.addChild(this.gameContentLayer);
+        this._gameContentLayer.setContentSize(blContentSize);
+        this._gameContentLayer.setScale(this.getZoomOutScale());
+        this._gameContentLayer.setPosition(size.width/2 - blContentSize.width/2,size.height/2 - blContentSize.height/2);
+        this.addChild(this._gameContentLayer);
 
         this.initPlayCanvas();
     },
@@ -133,7 +213,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         for(var i = 0; i < this.getXUnitsNum(); i++){
             for(var j = 0; j < this.getYUnitsNum(); j++){
                 var sprTag = i*100+j+1;
-                var tmpSpr = this.gameContentLayer.getChildByTag(sprTag);
+                var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
                 if (null == tmpSpr){
                     tmpSpr = PieceField.factoryCreate();
                     tmpSpr.setCanTouched(false);
@@ -141,7 +221,7 @@ var ChallengeGameLayer = BaseLayer.extend({
                     tmpSpr.setTag(sprTag);
                     var posi = cc.p(i*(this._sprWidth+this._gap)+this._sprWidth/2, j*(this._sprHeight+this._gap)+this._sprHeight/2);
                     tmpSpr.setPosition(posi);
-                    this.gameContentLayer.addChild(tmpSpr);
+                    this._gameContentLayer.addChild(tmpSpr);
                 } else {
                     tmpSpr.resetState();
                     //this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i,j))
@@ -151,9 +231,9 @@ var ChallengeGameLayer = BaseLayer.extend({
     },
 
     createTouchLayer:function() {
-        this.touchLayer = new TouchLayer(this.gameContentLayer.getContentSize(), this.getXUnitsNum(), this.getYUnitsNum());
-        this.touchLayer.setDelegate(this.gameContentLayer);
-        this.gameContentLayer.addChild(this.touchLayer, this.getXUnitsNum()*this.getYUnitsNum()+10);
+        this._touchLayer = new TouchLayer(this._gameContentLayer.getContentSize(), this.getXUnitsNum(), this.getYUnitsNum());
+        this._touchLayer.setDelegate(this._gameContentLayer);
+        this._gameContentLayer.addChild(this._touchLayer, this.getXUnitsNum()*this.getYUnitsNum()+10);
 
     },
 })

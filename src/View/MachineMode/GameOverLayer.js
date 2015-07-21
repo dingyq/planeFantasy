@@ -12,6 +12,7 @@ var GameOverLayer = BaseLayer.extend({
     ctor:function(){
         this._super();
         this._cSize = cc.size(140,120);
+        this.setOpacity(0);
         this._itemTagConfig = {
             restart:100,
             backHall:200,

@@ -37,6 +37,7 @@
   "src/View/ChallengeMode/TargetSelectPanel.js",
   "src/View/ChallengeMode/ChallengeGameLayer.js",
   "src/View/ChallengeMode/TouchLayer.js",
+  "src/View/ChallengeMode/PlaceTargetAssistMenu.js",
 
 
   "src/Controller/AircraftBeatController.js",

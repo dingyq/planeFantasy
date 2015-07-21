@@ -18,7 +18,7 @@ var CanvasMatrixModel = cc.Class.extend({
 
     initModelData:function(){
         this._targetNumExist = this.getTargetNumInit();
-        this._targetsList = new Array(); //目标集合
+        this._targetsList = new Array(); //目标(targetModel)集合
         this._headPointList = new Array(); //目标头部集合
 
         this._matrix = new Array();
@@ -58,6 +58,9 @@ var CanvasMatrixModel = cc.Class.extend({
         this._targetsList.push(targetM);
     },
 
+    clearTargetsList:function(){
+        this.initModelData();
+    },
 
     addTargetToListByDetailProperty:function(direction, originPoint, targetType){
         //var tmpTarget;
@@ -90,6 +93,7 @@ var CanvasMatrixModel = cc.Class.extend({
 
     markMatrixPoint:function(point){
         this._matrix[point.x][point.y] = 1;
+        cc.log("markMatrixPoint is " + point.x + " " + point.y + " test "+this._matrix[point.x][point.y]);
     },
 
     getMatrix:function(){
@@ -114,7 +118,8 @@ var CanvasMatrixModel = cc.Class.extend({
     },
 
     isPartPoint:function(point) {
-        if(1 == this.getMatrix()[point.x][point.y]){
+        cc.log("getMatrix point "+parseInt(this.getMatrix()[point.x][point.y]));
+        if(1 == parseInt(this.getMatrix()[point.x][point.y])){
             return true;
         } else {
             return false;

@@ -33,6 +33,8 @@ var PieceField = cc.Sprite.extend({
         }
         this.setIsFlipped(false);
         this.setIsMarked(false);
+        this.setIsTakeUp(false);
+        this.setIsPlaced(false);
         this.setLastClickTime(this.getCurrentTime());
     },
 
@@ -62,6 +64,7 @@ var PieceField = cc.Sprite.extend({
 
     setIsPart:function(isPart){
         this._isPart = isPart;
+        cc.log("_isPart is "+this._isPart);
     },
 
     getIsPart:function(){
@@ -70,6 +73,7 @@ var PieceField = cc.Sprite.extend({
 
     setIsHead:function(isHead){
         this._isHead = isHead;
+        cc.log("_isHead is "+this._isHead);
     },
 
     getIsHead:function() {
@@ -231,8 +235,6 @@ var PieceField = cc.Sprite.extend({
             this.setSpriteFrame(pieceFiledRes.default)
         }
     },
-
-
 
 })
 

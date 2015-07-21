@@ -81,6 +81,7 @@ var TargetSelectPanel = BaseLayer.extend({
     ctor:function(){
         this._super();
         this.setPosition(0, 0);
+        this.setOpacity(0);
         this.setContentSize(cc.winSize);
         //this.setColor(cc.color(255, 255, 0));
 

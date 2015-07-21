@@ -1,4 +1,5 @@
-var GameMenu = cc.Layer.extend({
+
+var GameMenu = BaseLayer.extend({
     _className:"GameMenu",
     //_restartItem:null,
     //_backItem:null,
@@ -6,11 +7,11 @@ var GameMenu = cc.Layer.extend({
     _height:120,
     _itemConfig:null,
     _itemTagConfig:null,
-    _cSize:null,
 
     ctor:function(){
         this._super();
         this._cSize = cc.size(140,120);
+        this.setOpacity(0);
         this._itemTagConfig = {
             restart:100,
             backHall:200,

@@ -12,6 +12,7 @@ var TargetTypeTipLayer = BaseLayer.extend({
         //this.setColor(cc.color(255,255,255));
         this.setContentSize(cc.size(120, 300));
         this.setPosition(cc.p(0, 250));
+        this.setOpacity(0);
 
         this.initTargetTips(targetsArr);
         return true;

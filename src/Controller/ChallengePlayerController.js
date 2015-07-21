@@ -6,6 +6,10 @@ var ChallengePlayerController = cc.Scene.extend({
     _gameLayer:null,
     _xUnits:11,
     _yUnits:15,
+    _gameMenu:null,
+    _targetSelectPanel:null,
+    _placeAssistMenu:null,
+
 
     onEnter:function(){
         this._super();
@@ -56,20 +60,35 @@ var ChallengePlayerController = cc.Scene.extend({
 
         this.createTargetSelectPanel();
         this.createGameMenu();
+        this.createAssistantMenu();
     },
 
     createGameMenu:function(){
-        this.gameMenu = new GameMenu();
-        this.addChild(this.gameMenu);
+        this._gameMenu = new GameMenu();
+        this._gameMenu.setDelegate(this);
+        this.addChild(this._gameMenu);
     },
 
     createTargetSelectPanel:function(){
-        this.targetSelectPanel = new TargetSelectPanel();
-        this.addChild(this.targetSelectPanel);
+        this._targetSelectPanel = new TargetSelectPanel();
+        this._targetSelectPanel.setDelegate(this);
+        this.addChild(this._targetSelectPanel);
     },
 
     createAssistantMenu:function(){
-        
-    }
+        this._placeAssistMenu = new PlaceTargetAssistMenu();
+        this._placeAssistMenu.setDelegate(this);
+        this.addChild(this._placeAssistMenu);
+    },
+
+    resetGameInterface:function(){
+        cc.log("resetGameInterface");
+        this._gameLayer.resetGameLayer();
+    },
+
+    layoutTargetDone:function(){
+        var result = this._gameLayer.layoutTargetsDone();
+
+    },
 
 })

@@ -9,6 +9,7 @@ var SystemMenu = BaseLayer.extend({
         this._super();
         cc.log("initUserInterface")
         this._cSize = cc.winSize;
+        this.setOpacity(0);
         this._itemTagConfig = {
             machine:100,
             challenge:200,
