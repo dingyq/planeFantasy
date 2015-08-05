@@ -100,23 +100,6 @@ var ChallengeGameLayer = BaseLayer.extend({
     layoutTargetsDone:function(){
         var result = this.getLayoutTargetsPointsList();
         //cc.log("layoutTargetDone " + JSON.stringify(result));
-        //for(var i = 0; i < this.getXUnitsNum(); i++){
-        //    for(var j = 0; j < this.getYUnitsNum(); j++){
-        //        var sprTag = i*100+j+1;
-        //        var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
-        //        if (null != tmpSpr){
-        //            var jump = cc.rotateBy(0.3, 0, -90);
-        //            var jump1 = cc.rotateBy(0.3, 0, -90);
-        //            var isPart = this._canvasMatrixM.isPartPoint(new Point(i, j));
-        //            var isHead = this._canvasMatrixM.isHeadPoint(new Point(i, j));
-        //            tmpSpr.runAction(cc.sequence(cc.delayTime(0.1*i+0.1*j), jump, cc.callFunc(function(){
-        //                this.setCanTouched(true);
-        //            }, tmpSpr), jump1));
-        //            tmpSpr.resetState(isPart, isHead);
-        //        }
-        //    }
-        //}
-
         for(var i = 0; i < this.getXUnitsNum(); i++){
             for(var j = 0; j < this.getYUnitsNum(); j++){
                 var sprTag = i*100+j+1;
@@ -164,7 +147,7 @@ var ChallengeGameLayer = BaseLayer.extend({
             var pointList = modelList[i].getAbsolutePartsSet();
             var head = modelList[i].getAbsoluteHeadPoint();
             for (var j = 0; j < pointList.length; j++){
-                cc.log("model idx"+i+"  point x,y is "+pointList[j].x+"  "+pointList[j].y);
+                //cc.log("model idx"+i+"  point x,y is "+pointList[j].x+"  "+pointList[j].y);
                 var sprTag = pointList[j].x*100+pointList[j].y+1;
                 var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
                 if (null != tmpSpr){
@@ -219,7 +202,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         for(var i = 0; i < modelList.length; i ++){
             var pointList = modelList[i].getAbsolutePartsSet();
             for (var j = 0; j < pointList.length; j++){
-                cc.log("model idx"+i+"  point x,y is "+pointList[j].x+"  "+pointList[j].y);
+                //cc.log("model idx"+i+"  point x,y is "+pointList[j].x+"  "+pointList[j].y);
                 var sprTag = pointList[j].x*100+pointList[j].y+1;
                 var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
                 if (null != tmpSpr){
@@ -285,9 +268,7 @@ var ChallengeGameLayer = BaseLayer.extend({
             var tmpPointList = targetsList[i].getAbsolutePartsSet();
             for(var j = 0; j < tmpPointList.length; j++) {
                 var sprTag = parseInt(tmpPointList[j].x)*100 + parseInt(tmpPointList[j].y) + 1;
-                cc.log("gameOverHandle is " + sprTag);
                 var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
-                cc.log("tmpSpr is "+tmpSpr);
                 tmpSpr.showStatus();
             }
         }

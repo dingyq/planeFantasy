@@ -93,7 +93,7 @@ var CanvasMatrixModel = cc.Class.extend({
 
     markMatrixPoint:function(point){
         this._matrix[point.x][point.y] = 1;
-        cc.log("markMatrixPoint is " + point.x + " " + point.y + " test "+this._matrix[point.x][point.y]);
+        //cc.log("markMatrixPoint is " + point.x + " " + point.y + " test "+this._matrix[point.x][point.y]);
     },
 
     getMatrix:function(){

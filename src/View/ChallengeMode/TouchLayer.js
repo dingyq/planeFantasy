@@ -63,7 +63,7 @@ var TouchLayer = BaseLayer.extend({
             illegalPointsList:new Array(),
 
             onTouchBegan:function(touch, event){
-                cc.log("touch layer onTouchBegan");
+                //cc.log("touch layer onTouchBegan");
                 var target = event.getCurrentTarget();
                 var locationInNode = target.convertToNodeSpace(touch.getLocation());
                 this.beginPosi = locationInNode;
@@ -73,7 +73,7 @@ var TouchLayer = BaseLayer.extend({
                 var s = target.getContentSize();
                 var rect = cc.rect(0, 0, s.width, s.height);
 
-                cc.log(s.width + " "+ s.height);
+                //cc.log(s.width + " "+ s.height);
                 if (null == target.getSelectedModel()) {
                     return false;
                 };

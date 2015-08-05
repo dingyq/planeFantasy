@@ -168,8 +168,7 @@ var PieceField = cc.Sprite.extend({
     },
 
     handleClickEvent:function(){
-
-        cc.log("handleClickEvent");
+        //cc.log("handleClickEvent");
         if(this.getIsFlipped()){
             return false;
         }
