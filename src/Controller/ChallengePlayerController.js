@@ -154,8 +154,8 @@ var ChallengePlayerController = cc.Scene.extend({
     // 确认摆放
     layoutTargetDone:function(){
         if(this._gameLayer.getIsAllTargetPlaced()){
-            //(new AlertView("尚未布置完毕，请重新检查")).show();
-            //return;
+            (new AlertView("尚未布置完毕，请重新检查")).show();
+            return;
         }
 
         this._gameLayer.layoutTargetsDone();
