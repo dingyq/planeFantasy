@@ -16,7 +16,7 @@ for (var i in res) {
     g_resources.push(res[i]);
 }
 
-var btnItemRes = {
+var BtnItemRes = {
     baseBtn:"basic_button_normal.png",
     aboutGame:"about_game.png",
     gameOption:"game_option.png",
@@ -26,7 +26,7 @@ var btnItemRes = {
     restartGame:"restart_game.png",
 }
 
-var pieceFiledRes = {
+var PieceFiledRes = {
     default:"piece_default.png",
     fail:"piece_fail.png",
     headHit:"piece_head_hit.png",
@@ -36,7 +36,7 @@ var pieceFiledRes = {
     illegal:"piece_illegal.png",
 };
 
-var targetModelRes = {
+var TargetModelRes = {
     plane:"plane_model.png",
     tank:"tank_model.png",
     cannon:"cannon_model.png",

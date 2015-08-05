@@ -17,10 +17,10 @@ var SystemMenu = BaseLayer.extend({
             aboutGame:400,
         }
         this._itemConfig = [
-            {name:"单机模式", btnNor:btnItemRes.machineMode, btnCli:btnItemRes.machineMode, tag:this._itemTagConfig.machine},
-            {name:"挑战模式", btnNor:btnItemRes.challengeMode, btnCli:btnItemRes.challengeMode, tag:this._itemTagConfig.challenge},
-            {name:"游戏选项", btnNor:btnItemRes.gameOption, btnCli:btnItemRes.gameOption, tag:this._itemTagConfig.gameOption},
-            {name:"关于游戏", btnNor:btnItemRes.aboutGame, btnCli:btnItemRes.aboutGame, tag:this._itemTagConfig.aboutGame},
+            {name:"单机模式", btnNor:BtnItemRes.machineMode, btnCli:BtnItemRes.machineMode, tag:this._itemTagConfig.machine},
+            {name:"挑战模式", btnNor:BtnItemRes.challengeMode, btnCli:BtnItemRes.challengeMode, tag:this._itemTagConfig.challenge},
+            {name:"游戏选项", btnNor:BtnItemRes.gameOption, btnCli:BtnItemRes.gameOption, tag:this._itemTagConfig.gameOption},
+            {name:"关于游戏", btnNor:BtnItemRes.aboutGame, btnCli:BtnItemRes.aboutGame, tag:this._itemTagConfig.aboutGame},
         ];
     },
 

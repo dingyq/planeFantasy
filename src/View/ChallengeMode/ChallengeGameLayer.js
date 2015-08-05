@@ -32,13 +32,15 @@ var ChallengeGameLayer = BaseLayer.extend({
     },
 
     onExit:function(){
-
-
         this._super();
     },
 
     resetTargetCount:function(){
         this._targetCount = 2;
+    },
+
+    getIsAllTargetPlaced:function(){
+        return this._targetCount > 0;
     },
 
     getXUnitsNum:function(){
@@ -69,6 +71,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         return this._selectedTargetModel;
     },
 
+    // 获取布局后target点
     getLayoutTargetsPointsList:function(){
         var bodyPointsList = new Array();
         var headPointsList = new Array();
@@ -93,9 +96,26 @@ var ChallengeGameLayer = BaseLayer.extend({
         this._touchLayer.updateSelectedModel(model);
     },
 
+    // 布局结束后，重新初始化界面
     layoutTargetsDone:function(){
         var result = this.getLayoutTargetsPointsList();
-        cc.log("layoutTargetDone " + JSON.stringify(result));
+        //cc.log("layoutTargetDone " + JSON.stringify(result));
+        //for(var i = 0; i < this.getXUnitsNum(); i++){
+        //    for(var j = 0; j < this.getYUnitsNum(); j++){
+        //        var sprTag = i*100+j+1;
+        //        var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
+        //        if (null != tmpSpr){
+        //            var jump = cc.rotateBy(0.3, 0, -90);
+        //            var jump1 = cc.rotateBy(0.3, 0, -90);
+        //            var isPart = this._canvasMatrixM.isPartPoint(new Point(i, j));
+        //            var isHead = this._canvasMatrixM.isHeadPoint(new Point(i, j));
+        //            tmpSpr.runAction(cc.sequence(cc.delayTime(0.1*i+0.1*j), jump, cc.callFunc(function(){
+        //                this.setCanTouched(true);
+        //            }, tmpSpr), jump1));
+        //            tmpSpr.resetState(isPart, isHead);
+        //        }
+        //    }
+        //}
 
         for(var i = 0; i < this.getXUnitsNum(); i++){
             for(var j = 0; j < this.getYUnitsNum(); j++){
@@ -104,18 +124,20 @@ var ChallengeGameLayer = BaseLayer.extend({
                 if (null != tmpSpr){
                     var jump = cc.rotateBy(0.3, 0, -90);
                     var jump1 = cc.rotateBy(0.3, 0, -90);
-                    var isPart = this._canvasMatrixM.isPartPoint(new Point(i, j));
-                    var isHead = this._canvasMatrixM.isHeadPoint(new Point(i, j));
-                    tmpSpr.runAction(cc.sequence(jump, cc.callFunc(function(){
-                        this.setCanTouched(true);
-                        //this._tmpSpr.resetState(this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i, j)));
-                    }, tmpSpr), jump1));
-                    tmpSpr.resetState(isPart, isHead);
+                    var dataConfig = {
+                        part:this._canvasMatrixM.isPartPoint(new Point(i, j)),
+                        head:this._canvasMatrixM.isHeadPoint(new Point(i, j)),
+                    }
+                    tmpSpr.runAction(cc.sequence(cc.delayTime(this.getYUnitsNum()*0.05 + 0.05*i - 0.05*j), jump, cc.callFunc(function(target, dataC){
+                        target.setCanTouched(true);
+                        target.resetState(dataC.part, dataC.head);
+                    }, tmpSpr, dataConfig), jump1));
                 }
             }
         }
     },
 
+    // 放置选中的target
     selectedModelPlaced:function(model){
         if(this._targetCount <= 0){
             var pointList = model.getAbsolutePartsSet();
@@ -159,6 +181,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         }
     },
 
+    // 移动拖放过程中判断位置是否合法
     checkTargetModelPlacingLegality:function(model){
         return this._canvasMatrixM.checkTargetModelIsLegal(model);
     },
@@ -168,6 +191,21 @@ var ChallengeGameLayer = BaseLayer.extend({
         //this._canvasMatrixM.randomTargets();
     },
 
+    getCanvasMatrixM:function(){
+        return this._canvasMatrixM;
+    },
+
+    // 彻底重新清除界面
+    resetGameLayerComplete:function(){
+        // reset interface
+        //this.resetGameLayerByModelList(this._canvasMatrixM.getTargetsList());
+        this.initPlayCanvas();
+        this.resetTargetCount();
+        // reset model
+        this._canvasMatrixM.clearTargetsList();
+    },
+
+    // 重新清除界面
     resetGameLayer:function(){
         // reset interface
         this.resetGameLayerByModelList(this._canvasMatrixM.getTargetsList());
@@ -176,6 +214,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         this._canvasMatrixM.clearTargetsList();
     },
 
+    // 根据已选数据model定向清空点阵
     resetGameLayerByModelList:function(modelList){
         for(var i = 0; i < modelList.length; i ++){
             var pointList = modelList[i].getAbsolutePartsSet();
@@ -196,6 +235,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         }
     },
 
+    // 创建基本点阵
     createGameContentLayer:function(){
         var size = cc.winSize;
         // the _gameContentLayer, use to add to scrollView in future.
@@ -209,6 +249,7 @@ var ChallengeGameLayer = BaseLayer.extend({
         this.initPlayCanvas();
     },
 
+    // 初始化点阵
     initPlayCanvas:function(){
         for(var i = 0; i < this.getXUnitsNum(); i++){
             for(var j = 0; j < this.getYUnitsNum(); j++){
@@ -223,6 +264,7 @@ var ChallengeGameLayer = BaseLayer.extend({
                     tmpSpr.setPosition(posi);
                     this._gameContentLayer.addChild(tmpSpr);
                 } else {
+                    tmpSpr.setCanTouched(false);
                     tmpSpr.resetState();
                     //this._canvasMatrixM.isPartPoint(new Point(i, j)), this._canvasMatrixM.isHeadPoint(new Point(i,j))
                 }
@@ -234,6 +276,20 @@ var ChallengeGameLayer = BaseLayer.extend({
         this._touchLayer = new TouchLayer(this._gameContentLayer.getContentSize(), this.getXUnitsNum(), this.getYUnitsNum());
         this._touchLayer.setDelegate(this._gameContentLayer);
         this._gameContentLayer.addChild(this._touchLayer, this.getXUnitsNum()*this.getYUnitsNum()+10);
+    },
 
+    gameOverHandle:function(){
+        cc.log("gameOverHandle");
+        var targetsList = this._canvasMatrixM.getTargetsList();
+        for(var i = 0; i < targetsList.length; i ++) {
+            var tmpPointList = targetsList[i].getAbsolutePartsSet();
+            for(var j = 0; j < tmpPointList.length; j++) {
+                var sprTag = parseInt(tmpPointList[j].x)*100 + parseInt(tmpPointList[j].y) + 1;
+                cc.log("gameOverHandle is " + sprTag);
+                var tmpSpr = this._gameContentLayer.getChildByTag(sprTag);
+                cc.log("tmpSpr is "+tmpSpr);
+                tmpSpr.showStatus();
+            }
+        }
     },
 })

@@ -58,18 +58,18 @@ var TargetSelectCell = cc.TableViewCell.extend({
 });
 
 var targetSelectConfig = [
-    {name:"planeUp", direction:DIRECTION.UP, sprName:targetModelRes.plane, rotation:0, targetType:TARGET_TYPE.PLANE},
-    {name:"planeDown", direction:DIRECTION.DOWN, sprName:targetModelRes.plane, rotation:180, targetType:TARGET_TYPE.PLANE},
-    {name:"planeLeft", direction:DIRECTION.LEFT, sprName:targetModelRes.plane, rotation:270, targetType:TARGET_TYPE.PLANE},
-    {name:"planeRight", direction:DIRECTION.RIGHT, sprName:targetModelRes.plane, rotation:90, targetType:TARGET_TYPE.PLANE},
-    {name:"tankUp", direction:DIRECTION.UP, sprName:targetModelRes.tank, rotation:0, targetType:TARGET_TYPE.TANK},
-    {name:"tankDown", direction:DIRECTION.DOWN, sprName:targetModelRes.tank, rotation:180, targetType:TARGET_TYPE.TANK},
-    {name:"tankLeft", direction:DIRECTION.LEFT, sprName:targetModelRes.tank, rotation:270, targetType:TARGET_TYPE.TANK},
-    {name:"tankRight", direction:DIRECTION.RIGHT, sprName:targetModelRes.tank, rotation:90, targetType:TARGET_TYPE.TANK},
-    {name:"cannonLeft", direction:DIRECTION.UP, sprName:targetModelRes.cannon, rotation:0, targetType:TARGET_TYPE.CANNON},
-    {name:"cannonDown", direction:DIRECTION.DOWN, sprName:targetModelRes.cannon, rotation:180, targetType:TARGET_TYPE.CANNON},
-    {name:"cannonLeft", direction:DIRECTION.LEFT, sprName:targetModelRes.cannon, rotation:270, targetType:TARGET_TYPE.CANNON},
-    {name:"cannonRight", direction:DIRECTION.RIGHT, sprName:targetModelRes.cannon, rotation:90, targetType:TARGET_TYPE.CANNON}
+    {name:"planeUp", direction:DIRECTION.UP, sprName:TargetModelRes.plane, rotation:0, targetType:TARGET_TYPE.PLANE},
+    {name:"planeDown", direction:DIRECTION.DOWN, sprName:TargetModelRes.plane, rotation:180, targetType:TARGET_TYPE.PLANE},
+    {name:"planeLeft", direction:DIRECTION.LEFT, sprName:TargetModelRes.plane, rotation:270, targetType:TARGET_TYPE.PLANE},
+    {name:"planeRight", direction:DIRECTION.RIGHT, sprName:TargetModelRes.plane, rotation:90, targetType:TARGET_TYPE.PLANE},
+    {name:"tankUp", direction:DIRECTION.UP, sprName:TargetModelRes.tank, rotation:0, targetType:TARGET_TYPE.TANK},
+    {name:"tankDown", direction:DIRECTION.DOWN, sprName:TargetModelRes.tank, rotation:180, targetType:TARGET_TYPE.TANK},
+    {name:"tankLeft", direction:DIRECTION.LEFT, sprName:TargetModelRes.tank, rotation:270, targetType:TARGET_TYPE.TANK},
+    {name:"tankRight", direction:DIRECTION.RIGHT, sprName:TargetModelRes.tank, rotation:90, targetType:TARGET_TYPE.TANK},
+    {name:"cannonLeft", direction:DIRECTION.UP, sprName:TargetModelRes.cannon, rotation:0, targetType:TARGET_TYPE.CANNON},
+    {name:"cannonDown", direction:DIRECTION.DOWN, sprName:TargetModelRes.cannon, rotation:180, targetType:TARGET_TYPE.CANNON},
+    {name:"cannonLeft", direction:DIRECTION.LEFT, sprName:TargetModelRes.cannon, rotation:270, targetType:TARGET_TYPE.CANNON},
+    {name:"cannonRight", direction:DIRECTION.RIGHT, sprName:TargetModelRes.cannon, rotation:90, targetType:TARGET_TYPE.CANNON}
 ];
 
 var TargetSelectPanel = BaseLayer.extend({

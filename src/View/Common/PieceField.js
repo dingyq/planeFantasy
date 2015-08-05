@@ -13,7 +13,7 @@ var PieceField = cc.Sprite.extend({
     _canTouched:true,
 
     ctor:function(isPart, isHead){
-        this._super("#"+pieceFiledRes.default);
+        this._super("#"+PieceFiledRes.default);
         if (isPart){
             this.setIsPart(true);
             this.setIsHead(isHead);
@@ -23,7 +23,10 @@ var PieceField = cc.Sprite.extend({
     },
 
     resetState:function(isPart, isHead){
-        this.setSpriteFrame(pieceFiledRes.default);
+        cc.log(isPart);
+        cc.log(isHead);
+
+        this.setSpriteFrame(PieceFiledRes.default);
         if (isPart){
             this.setIsPart(true);
             this.setIsHead(isHead);
@@ -64,7 +67,6 @@ var PieceField = cc.Sprite.extend({
 
     setIsPart:function(isPart){
         this._isPart = isPart;
-        cc.log("_isPart is "+this._isPart);
     },
 
     getIsPart:function(){
@@ -73,7 +75,6 @@ var PieceField = cc.Sprite.extend({
 
     setIsHead:function(isHead){
         this._isHead = isHead;
-        cc.log("_isHead is "+this._isHead);
     },
 
     getIsHead:function() {
@@ -182,17 +183,17 @@ var PieceField = cc.Sprite.extend({
             if(this.getIsPart()) {
                 if (this.getIsHead()) {
                     // 击中头部
-                    this.setSpriteFrame(pieceFiledRes.headHit);
+                    this.setSpriteFrame(PieceFiledRes.headHit);
 //                    cc.log("TARGET_HEAD_HIT");
                     UpdateUIManager.getInstance().dispatch(NOTIFY.TARGET_HEAD_HIT, this.getTag());
                 } else {
                     // 击中身体
-                    this.setSpriteFrame(pieceFiledRes.bodyHit);
+                    this.setSpriteFrame(PieceFiledRes.bodyHit);
 //                    cc.log("TARGET_BODY_HIT");
                     UpdateUIManager.getInstance().dispatch(NOTIFY.TARGET_BODY_HIT, this.getTag());
                 }
             } else {
-                    this.setSpriteFrame(pieceFiledRes.fail);
+                    this.setSpriteFrame(PieceFiledRes.fail);
             }
         } else {
             // 单击处理
@@ -200,11 +201,11 @@ var PieceField = cc.Sprite.extend({
             if(this.getIsMarked()) {
                 // 取消标记
                 this.setIsMarked(false);
-                this.setSpriteFrame(pieceFiledRes.default);
+                this.setSpriteFrame(PieceFiledRes.default);
             } else {
                 // 标记位置
                 this.setIsMarked(true);
-                this.setSpriteFrame(pieceFiledRes.mark);
+                this.setSpriteFrame(PieceFiledRes.mark);
             }
         }
     },
@@ -213,9 +214,9 @@ var PieceField = cc.Sprite.extend({
         if(!this.getIsFlipped()){
             this.setIsFlipped(true);
             if(this.getIsHead()){
-                this.setSpriteFrame(pieceFiledRes.headHit);
+                this.setSpriteFrame(PieceFiledRes.headHit);
             } else {
-                this.setSpriteFrame(pieceFiledRes.bodyHit);
+                this.setSpriteFrame(PieceFiledRes.bodyHit);
             }
         }
     },
@@ -227,12 +228,12 @@ var PieceField = cc.Sprite.extend({
         this.setIsTakeUp(isTakeUp);
         if (isTakeUp) {
             if (isLegal){
-                this.setSpriteFrame(pieceFiledRes.legal);
+                this.setSpriteFrame(PieceFiledRes.legal);
             } else {
-                this.setSpriteFrame(pieceFiledRes.illegal);
+                this.setSpriteFrame(PieceFiledRes.illegal);
             }
         } else {
-            this.setSpriteFrame(pieceFiledRes.default)
+            this.setSpriteFrame(PieceFiledRes.default)
         }
     },
 

@@ -17,8 +17,8 @@ var GameMenu = BaseLayer.extend({
             backHall:200,
         }
         this._itemConfig = [
-            {name:"重新开始", btnNor:btnItemRes.restartGame, btnCli:btnItemRes.restartGame, tag:this._itemTagConfig.restart},
-            {name:"回到大厅", btnNor:btnItemRes.backHall, btnCli:btnItemRes.backHall, tag:this._itemTagConfig.backHall},
+            {name:"重新开始", btnNor:BtnItemRes.restartGame, btnCli:BtnItemRes.restartGame, tag:this._itemTagConfig.restart},
+            {name:"回到大厅", btnNor:BtnItemRes.backHall, btnCli:BtnItemRes.backHall, tag:this._itemTagConfig.backHall},
         ];
         this.setContentSize(this._cSize);
         this.setPosition(0,cc.winSize.height - this._cSize.height);

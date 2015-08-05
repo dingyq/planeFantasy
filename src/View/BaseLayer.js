@@ -4,6 +4,7 @@
 
 var BaseLayer = cc.LayerColor.extend({
     _className:"BaseLayer",
+    _btnZoomScale:0.05,
     _delegate:null,
     _cSize:null,
 
@@ -72,6 +73,8 @@ var BaseLayer = cc.LayerColor.extend({
         return closeBtn;
     },
 
-
+    getButtonZoomScale:function(){
+        return this._btnZoomScale;
+    },
 
 })

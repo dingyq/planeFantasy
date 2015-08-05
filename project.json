@@ -23,6 +23,7 @@
   "src/Model/TargetModel.js",
 
   "src/View/BaseLayer.js",
+  "src/View/Common/AlertView.js",
   "src/View/Common/PieceField.js",
   "src/View/Common/TargetSprite.js",
   "src/View/Common/Effect.js",

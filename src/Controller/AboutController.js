@@ -11,7 +11,7 @@ var AboutController = cc.Scene.extend({
             backHall:200,
         }
         this._itemConfig = [
-            {name:"回到大厅", btnNor:btnItemRes.backHall, btnCli:btnItemRes.backHall, tag:this._itemTagConfig.backHall},
+            {name:"回到大厅", btnNor:BtnItemRes.backHall, btnCli:BtnItemRes.backHall, tag:this._itemTagConfig.backHall},
         ];
 
         this.initUserInterface();

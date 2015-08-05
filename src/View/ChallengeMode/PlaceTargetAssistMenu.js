@@ -20,8 +20,8 @@ var PlaceTargetAssistMenu = BaseLayer.extend({
             done:200,
         };
         this._itemConfig = [
-            {name:"清除", btnNor:btnItemRes.baseBtn, btnCli:btnItemRes.baseBtn, tag:this._itemTagConfig.clear},
-            {name:"确定", btnNor:btnItemRes.baseBtn, btnCli:btnItemRes.baseBtn, tag:this._itemTagConfig.done},
+            {name:"清除", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.clear},
+            {name:"确定", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.done},
         ];
 
         return true;

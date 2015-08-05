@@ -36,13 +36,13 @@ var TargetTypeTipLayer = BaseLayer.extend({
             var sprName = "";
             switch (targetsArr[i]){
                 case TARGET_TYPE.PLANE:
-                    sprName = "#"+targetModelRes.plane;
+                    sprName = "#"+TargetModelRes.plane;
                     break;
                 case TARGET_TYPE.TANK:
-                    sprName = "#"+targetModelRes.tank;
+                    sprName = "#"+TargetModelRes.tank;
                     break;
                 case TARGET_TYPE.CANNON:
-                    sprName = "#"+targetModelRes.cannon;
+                    sprName = "#"+TargetModelRes.cannon;
                     break;
                 default :
                     sprName = "";

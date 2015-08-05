@@ -118,7 +118,7 @@ var CanvasMatrixModel = cc.Class.extend({
     },
 
     isPartPoint:function(point) {
-        cc.log("getMatrix point "+parseInt(this.getMatrix()[point.x][point.y]));
+        //cc.log("getMatrix point "+parseInt(this.getMatrix()[point.x][point.y]));
         if(1 == parseInt(this.getMatrix()[point.x][point.y])){
             return true;
         } else {
@@ -171,7 +171,6 @@ var CanvasMatrixModel = cc.Class.extend({
         for(var i = 0; i < targetModelInfo.length; i++){
             this.markMatrixPoint(targetModelInfo[i]);
         }
-//        this.setHeadPoint(targetModel.getAbsoluteHeadPoint());
         this.addToHeadPointList(targetModel.getAbsoluteHeadPoint());
         cc.log("head x is "+targetModel.getAbsoluteHeadPoint().x+" y is "+targetModel.getAbsoluteHeadPoint().y);
     },
@@ -191,13 +190,14 @@ var CanvasMatrixModel = cc.Class.extend({
     },
 
     targetHeadHit:function(paramPoint){
-        cc.log("head point hited "+paramPoint.formatToString());
+        //cc.log("head point hited "+paramPoint.formatToString());
         if(--this._targetNumExist <= 0) {
             UpdateUIManager.getInstance().dispatch(NOTIFY.GAME_OVER);
         }
     },
 
     targetBodyHit:function(paramPoint){
-        cc.log("head body hited "+paramPoint.formatToString());
+        //cc.log("head body hited "+paramPoint.formatToString());
+
     },
 })
