@@ -23,9 +23,6 @@ var PieceField = cc.Sprite.extend({
     },
 
     resetState:function(isPart, isHead){
-        cc.log(isPart);
-        cc.log(isHead);
-
         this.setSpriteFrame(PieceFiledRes.default);
         if (isPart){
             this.setIsPart(true);

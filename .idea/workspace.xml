@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed45508-a647-45fd-bc57-82f8b114d762" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/ChallengePlayerController.js" afterPath="$PROJECT_DIR$/src/Controller/ChallengePlayerController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/Common/PieceField.js" afterPath="$PROJECT_DIR$/src/View/Common/PieceField.js" />
     </list>
     <ignored path="planeFan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PieceField.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PieceField.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/Common/PieceField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.27906978">
+              <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChallengePlayerController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChallengePlayerController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ChallengePlayerController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4096601">
-              <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="156" column="36" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
               <folding>
                 <marker date="1438789607000" expanded="true" signature="5492:5551" placeholder="//..." />
               </folding>
@@ -128,9 +128,9 @@
         <option value="$PROJECT_DIR$/project.json" />
         <option value="$PROJECT_DIR$/src/View/Common/AlertView.js" />
         <option value="$PROJECT_DIR$/src/Model/CanvasMatrixModel.js" />
-        <option value="$PROJECT_DIR$/src/View/Common/PieceField.js" />
         <option value="$PROJECT_DIR$/src/View/ChallengeMode/ChallengeGameLayer.js" />
         <option value="$PROJECT_DIR$/src/Controller/ChallengePlayerController.js" />
+        <option value="$PROJECT_DIR$/src/View/Common/PieceField.js" />
       </list>
     </option>
   </component>
@@ -689,12 +689,12 @@
       <workItem from="1437407889429" duration="1329000" />
       <workItem from="1437465898333" duration="1077000" />
       <workItem from="1437473534062" duration="1446000" />
-      <workItem from="1438771370684" duration="10311000" />
+      <workItem from="1438771370684" duration="10417000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146036000" />
+    <option name="totallyTimeSpent" value="146142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="6" />
@@ -1122,14 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/Common/PieceField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/actions/CCActionInstant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.037037">
@@ -1148,11 +1140,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ChallengePlayerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4096601">
-          <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="156" column="36" selection-start-line="156" selection-start-column="36" selection-end-line="156" selection-end-column="36" />
           <folding>
             <marker date="1438789607000" expanded="true" signature="5492:5551" placeholder="//..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/Common/PieceField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27906978">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
