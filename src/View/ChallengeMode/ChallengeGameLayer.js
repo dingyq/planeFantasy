@@ -262,7 +262,7 @@ var ChallengeGameLayer = BaseLayer.extend({
     },
 
     gameOverHandle:function(){
-        cc.log("gameOverHandle");
+        //cc.log("gameOverHandle");
         var targetsList = this._canvasMatrixM.getTargetsList();
         for(var i = 0; i < targetsList.length; i ++) {
             var tmpPointList = targetsList[i].getAbsolutePartsSet();

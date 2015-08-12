@@ -62,9 +62,9 @@ cc.game.onStart = function(){
     //load resources
     //cc.LoaderScene.preload(g_resources, function () {
     LoadingScene.preload(g_resources, function () {
-        //cc.director.runScene(new GameEntryController());
+        cc.director.runScene(new GameEntryController());
         //cc.director.runScene(new AircraftBeatController());
-        cc.director.runScene(new ChallengePlayerController());
+        //cc.director.runScene(new ChallengePlayerController());
     }, this);
 };
 cc.game.run();

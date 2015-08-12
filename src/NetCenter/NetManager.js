@@ -1,6 +1,7 @@
 
 //服务器接口地址
-var serverAddr = "http://www.995078.com/";//正式线上
+//var serverAddr = "http://www.995078.com/";//正式线上
+var serverAddr = "http://127.0.0.1:3000/api/gamemap";//本机
 //var serverAddr = "http://192.168.1.11/";//测试
 
 //具体方法实现方法

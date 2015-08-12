@@ -33,12 +33,12 @@ var NetAccess = cc.Class.extend({
 			signStr = signStr+key+reqPkg[key];
 		}
 
-		signStr = signStr+TexasPokerUser.getInstance().getUrlKey();
-		var urlsign = hex_md5(signStr);
-		url = url+"urlsign="+urlsign;
+		//signStr = signStr+TexasPokerUser.getInstance().getUrlKey();
+		//var urlsign = hex_md5(signStr);
+		//url = url+"urlsign="+urlsign;
 		var result = {
 			urlRlt:url,
-			urlSignRlt:urlsign
+			urlSignRlt:url
 		};
 		//cc.log("url is "+JSON.stringify(JSON.stringify(keyList)));
 		return result
@@ -118,7 +118,15 @@ var NetAccess = cc.Class.extend({
 		xhr.onreadystatechange = function (){
 			if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
 				cc.log("done "+xhr.responseText);
-				var responseObj = JSON.parse(xhr.responseText);
+
+				try{
+					var responseObj = JSON.parse(xhr.responseText);
+					cc.log(responseObj);
+				}catch(e){
+					funcCallBack(false);
+					return;
+				}
+
 				if (responseObj["retcode"] == RET_CODE.SESSION_KEY_OUTTIME) {
 
 				}else if(responseObj["retcode"] == RET_CODE.LOGIN_REPEAT_ONLINE_ERROR){

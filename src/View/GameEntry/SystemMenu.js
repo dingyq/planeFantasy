@@ -15,12 +15,20 @@ var SystemMenu = BaseLayer.extend({
             challenge:200,
             gameOption:300,
             aboutGame:400,
+            testNet:500,
         }
+        //this._itemConfig = [
+        //    {name:"单机模式", btnNor:BtnItemRes.machineMode, btnCli:BtnItemRes.machineMode, tag:this._itemTagConfig.machine},
+        //    {name:"挑战模式", btnNor:BtnItemRes.challengeMode, btnCli:BtnItemRes.challengeMode, tag:this._itemTagConfig.challenge},
+        //    {name:"游戏选项", btnNor:BtnItemRes.gameOption, btnCli:BtnItemRes.gameOption, tag:this._itemTagConfig.gameOption},
+        //    {name:"关于游戏", btnNor:BtnItemRes.aboutGame, btnCli:BtnItemRes.aboutGame, tag:this._itemTagConfig.aboutGame},
+        //];
         this._itemConfig = [
-            {name:"单机模式", btnNor:BtnItemRes.machineMode, btnCli:BtnItemRes.machineMode, tag:this._itemTagConfig.machine},
-            {name:"挑战模式", btnNor:BtnItemRes.challengeMode, btnCli:BtnItemRes.challengeMode, tag:this._itemTagConfig.challenge},
-            {name:"游戏选项", btnNor:BtnItemRes.gameOption, btnCli:BtnItemRes.gameOption, tag:this._itemTagConfig.gameOption},
-            {name:"关于游戏", btnNor:BtnItemRes.aboutGame, btnCli:BtnItemRes.aboutGame, tag:this._itemTagConfig.aboutGame},
+            {name:"单机模式", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.machine},
+            {name:"挑战模式", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.challenge},
+            {name:"游戏选项", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.gameOption},
+            {name:"关于游戏", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.aboutGame},
+            {name:"测试网路", btnNor:BtnItemRes.baseBtn, btnCli:BtnItemRes.baseBtn, tag:this._itemTagConfig.testNet}
         ];
     },
 
@@ -48,6 +56,11 @@ var SystemMenu = BaseLayer.extend({
         item.setTag(config.tag);
 
         FlashSprite("#"+config.btnNor, item);
+
+        var titleLabel = new cc.LabelTTF(config.name, "Arial", 20);
+        titleLabel.setColor(cc.color(255, 0, 0));
+        titleLabel.setPosition(item.width/2, item.height/2);
+        item.addChild(titleLabel);
 
         return item;
     },
@@ -79,9 +92,21 @@ var SystemMenu = BaseLayer.extend({
             case this._itemTagConfig.aboutGame:
                 this.onAbout();
                 break;
+            case this._itemTagConfig.testNet:
+                this.onTestNet();
+                break;
             default :
                 break;
         }
+    },
+
+    onTestNet:function(){
+        cc.log("onTestNet");
+        var reqPkg = {};
+        NetAccess.getInstance().postRequest(reqPkg, function(isSuccess, respData){
+            cc.log("respData is "+respData);
+
+        });
     },
 
     onMachineModeClick:function(){

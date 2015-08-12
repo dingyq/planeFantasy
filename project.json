@@ -1,50 +1,52 @@
 {
-"project_type": "javascript",
+    "project_type": "javascript",
 
-"debugMode" : 1,
-"showFPS" : true,
-"frameRate" : 60,
-"id" : "gameCanvas",
-"renderMode" : 0,
-"engineDir":"frameworks/cocos2d-html5",
+    "debugMode" : 1,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
 
-"modules" : ["cocos2d", "extensions", "external"],
+    "modules" : ["cocos2d", "extensions", "external"],
 
-"jsList" : [
-  "src/resource.js",
-  "src/app.js",
+    "jsList" : [
+        "src/resource.js",
+        "src/app.js",
 
-  "src/Utilities/js-signals.js",
-  "src/Utilities/Helper.js",
-  "src/Utilities/UpdateUIManager.js",
-  "src/Utilities/LoadingScene.js",
+        "src/Utilities/js-signals.js",
+        "src/Utilities/Helper.js",
+        "src/Utilities/UpdateUIManager.js",
+        "src/Utilities/LoadingScene.js",
+        "src/NetCenter/NetManager.js",
+        "src/NetCenter/NetAccess.js",
 
-  "src/Model/CanvasMatrixModel.js",
-  "src/Model/TargetModel.js",
+        "src/Model/CanvasMatrixModel.js",
+        "src/Model/TargetModel.js",
 
-  "src/View/BaseLayer.js",
-  "src/View/Common/AlertView.js",
-  "src/View/Common/PieceField.js",
-  "src/View/Common/TargetSprite.js",
-  "src/View/Common/Effect.js",
+        "src/View/BaseLayer.js",
+        "src/View/Common/AlertView.js",
+        "src/View/Common/PieceField.js",
+        "src/View/Common/TargetSprite.js",
+        "src/View/Common/Effect.js",
 
-  "src/View/GameEntry/SystemMenu.js",
+        "src/View/GameEntry/SystemMenu.js",
 
-  "src/View/MachineMode/GameStatus.js",
-  "src/View/MachineMode/MachineGameLayer.js",
-  "src/View/MachineMode/GameOverLayer.js",
-  "src/View/MachineMode/TargetTypeTipLayer.js",
-  "src/View/MachineMode/GameMenu.js",
-  "src/View/ChallengeMode/TargetSelectPanel.js",
-  "src/View/ChallengeMode/ChallengeGameLayer.js",
-  "src/View/ChallengeMode/TouchLayer.js",
-  "src/View/ChallengeMode/PlaceTargetAssistMenu.js",
+        "src/View/MachineMode/GameStatus.js",
+        "src/View/MachineMode/MachineGameLayer.js",
+        "src/View/MachineMode/GameOverLayer.js",
+        "src/View/MachineMode/TargetTypeTipLayer.js",
+        "src/View/MachineMode/GameMenu.js",
+        "src/View/ChallengeMode/TargetSelectPanel.js",
+        "src/View/ChallengeMode/ChallengeGameLayer.js",
+        "src/View/ChallengeMode/TouchLayer.js",
+        "src/View/ChallengeMode/PlaceTargetAssistMenu.js",
 
 
-  "src/Controller/AircraftBeatController.js",
-  "src/Controller/GameEntryController.js",
-  "src/Controller/OptionController.js",
-  "src/Controller/AboutController.js",
-  "src/Controller/ChallengePlayerController.js"
-]
+        "src/Controller/AircraftBeatController.js",
+        "src/Controller/GameEntryController.js",
+        "src/Controller/OptionController.js",
+        "src/Controller/AboutController.js",
+        "src/Controller/ChallengePlayerController.js"
+    ]
 }
